@@ -1,5 +1,5 @@
 # lstm-parser
-Transition based dependency parser with state embeddings computed by LSTM RNNs
+Transition based dependency parser with state embeddings computed by LSTM RNNs INCLUDING THE MORPHOLOGICAL FEATURES IN THE CONLL DATA SETS.
 
 For the [EMNLP character-based model](http://arxiv.org/pdf/1508.00657.pdf), please check out from the branch "char-based" and follow the instructions shown in the readme file of the new branch. Here, [the branch](https://github.com/clab/lstm-parser/tree/char-based)
 
@@ -24,8 +24,8 @@ There is an easier to use version [here](https://github.com/clab/lstm-parser/tre
 
 Having a training.conll file and a development.conll formatted according to the [CoNLL data format](http://ilk.uvt.nl/conll/#dataformat), to train a parsing model with the LSTM parser type the following at the command line prompt:
 
-    java -jar ParserOracleArcStdWithSwap.jar -t -1 -l 1 -c training.conll > trainingOracle.txt
-    java -jar ParserOracleArcStdWithSwap.jar -t -1 -l 1 -c development.conll > devOracle.txt
+    java -jar ArcStdMorphologyOracle.jar.jar -t -1 -l 1 -c training.conll > trainingOracle.txt
+    java -jar ArcStdMorphologyOracle.jar.jar -t -1 -l 1 -c development.conll > devOracle.txt
 
     parser/lstm-parse -T trainingOracle.txt -d devOracle.txt --hidden_dim 100 --lstm_input_dim 100 -w sskip.100.vectors --pretrained_dim 100 --rel_dim 20 --action_dim 20 -t -P
     
@@ -41,7 +41,7 @@ Note-3: the parser reports (after each iteration) results including punctuation 
 
 Having a test.conll file formatted according to the [CoNLL data format](http://ilk.uvt.nl/conll/#dataformat)
 
-    java -jar ParserOracleArcStdWithSwap.jar -t -1 -l 1 -c test.conll > testOracle.txt
+    java -jar ArcStdMorphologyOracle.jar.jar -t -1 -l 1 -c test.conll > testOracle.txt
 
     parser/lstm-parse -T trainingOracle.txt -d testOracle.txt --hidden_dim 100 --lstm_input_dim 100 -w sskip.100.vectors --pretrained_dim 100 --rel_dim 20 --action_dim 20 -P -m parser_pos_2_32_100_20_100_12_20-pidXXXX.params
 
